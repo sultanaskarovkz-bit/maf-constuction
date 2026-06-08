@@ -1,0 +1,75 @@
+# ===== MAF Construction — конфигурация хостинга (Apache) =====
+
+# --- Стартовая страница ---
+DirectoryIndex index.html
+
+# --- Принудительный HTTPS + www -> без www (опционально, при наличии mod_rewrite) ---
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # www -> без www
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ===== Блокировка ботов-скрейперов, которые едят трафик =====
+# (поисковые боты Google/Yandex/Bing НЕ блокируются)
+<IfModule mod_setenvif.c>
+  SetEnvIfNoCase User-Agent "AhrefsBot"        bad_bot
+  SetEnvIfNoCase User-Agent "SemrushBot"       bad_bot
+  SetEnvIfNoCase User-Agent "MJ12bot"          bad_bot
+  SetEnvIfNoCase User-Agent "DotBot"           bad_bot
+  SetEnvIfNoCase User-Agent "BLEXBot"          bad_bot
+  SetEnvIfNoCase User-Agent "DataForSeoBot"    bad_bot
+  SetEnvIfNoCase User-Agent "PetalBot"         bad_bot
+  SetEnvIfNoCase User-Agent "SeznamBot"        bad_bot
+  SetEnvIfNoCase User-Agent "MegaIndex"        bad_bot
+  SetEnvIfNoCase User-Agent "serpstatbot"      bad_bot
+  SetEnvIfNoCase User-Agent "ZoominfoBot"      bad_bot
+  SetEnvIfNoCase User-Agent "Bytespider"       bad_bot
+  SetEnvIfNoCase User-Agent "GPTBot"           bad_bot
+  SetEnvIfNoCase User-Agent "CCBot"            bad_bot
+  SetEnvIfNoCase User-Agent "ClaudeBot"        bad_bot
+  SetEnvIfNoCase User-Agent "Amazonbot"        bad_bot
+  SetEnvIfNoCase User-Agent "Scrapy"           bad_bot
+  SetEnvIfNoCase User-Agent "python-requests"  bad_bot
+  SetEnvIfNoCase User-Agent "curl"             bad_bot
+  SetEnvIfNoCase User-Agent "wget"             bad_bot
+  SetEnvIfNoCase User-Agent "HTTrack"          bad_bot
+  SetEnvIfNoCase User-Agent "^$"               bad_bot
+</IfModule>
+<IfModule mod_authz_core.c>
+  <RequireAll>
+    Require all granted
+    Require not env bad_bot
+  </RequireAll>
+</IfModule>
+
+# --- Сжатие (ускоряет загрузку) ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml application/xml
+</IfModule>
+
+# --- Кэширование статики ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 60 days"
+  ExpiresByType image/png "access plus 60 days"
+  ExpiresByType image/webp "access plus 60 days"
+  ExpiresByType application/pdf "access plus 14 days"
+</IfModule>
+
+# --- Безопасность ---
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Запрет листинга папок
+Options -Indexes
