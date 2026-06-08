@@ -51,6 +51,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--g9);background:var(-
 .mnav.active{opacity:1;visibility:visible}.mnav a{color:var(--w);text-decoration:none;font-size:22px;font-weight:600;font-family:'Outfit',sans-serif}
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--dark)}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(0,82,204,.3),transparent),radial-gradient(ellipse 60% 50% at 20% 80%,rgba(255,107,53,.15),transparent),linear-gradient(180deg,var(--dark),#0d1f3c)}
+.hero-img{position:absolute;inset:0;z-index:1;background-image:linear-gradient(90deg,rgba(10,22,40,.95) 0%,rgba(10,22,40,.78) 42%,rgba(10,22,40,.5) 100%),url('new-main-banner.jpeg');background-size:cover;background-position:center}
 .hero-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 25% 25%,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px}
 .hs{position:absolute;border-radius:50%;opacity:.06}.hs:nth-child(1){width:600px;height:600px;background:var(--pl);top:-200px;right:-100px;animation:f1 20s ease-in-out infinite}.hs:nth-child(2){width:400px;height:400px;background:var(--accent);bottom:-100px;left:-100px;animation:f2 25s ease-in-out infinite}
 @keyframes f1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,30px) scale(1.05)}}@keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px) scale(1.08)}}
@@ -242,6 +243,7 @@ input,textarea,button{font-size:16px!important}
 .fxd{bottom:88px}body{padding-bottom:72px}}
 /* ===== Полная мобильная адаптация конверсионных блоков ===== */
 @media(max-width:768px){
+ .hero-img{background-image:linear-gradient(180deg,rgba(10,22,40,.84),rgba(10,22,40,.93)),url('new-main-banner.jpeg')}
  .hero-content{padding:96px 18px 48px}
  .offer{width:100%;justify-content:center;text-align:center;font-size:12.5px;padding:9px 13px}
  .hero-trust{gap:7px}.htg{font-size:11.5px;padding:7px 11px}
@@ -363,7 +365,7 @@ input,textarea,button{font-size:16px!important}
 <nav class="nav"><a href="#quiz">Калькулятор</a><a href="#categories">Продукция</a><a href="#works">Работы</a><a href="#faq">Вопросы</a><a href="tel:+77470291557" class="navphone">+7 747 029-15-57</a><a href="#quiz" class="hcta">Рассчитать стоимость</a></nav>
 <button class="burger" onclick="toggleMenu()" aria-label="Menu"><i></i><i></i><i></i></button></header>
 <div class="mnav" id="mobileNav"><a href="#quiz" onclick="closeMenu()">Калькулятор</a><a href="#categories" onclick="closeMenu()">Продукция</a><a href="#riders" onclick="closeMenu()">Качалки</a><a href="#works" onclick="closeMenu()">Работы</a><a href="#faq" onclick="closeMenu()">Вопросы</a><a href="#contacts" onclick="closeMenu()">Контакты</a><a href="tel:+77470291557" onclick="closeMenu()">+7 747 029-15-57</a></div>
-<section class="hero"><div class="hero-bg"></div><div class="hero-pattern"></div><div style="position:absolute;inset:0;overflow:hidden;pointer-events:none"><div class="hs"></div><div class="hs"></div></div>
+<section class="hero"><div class="hero-bg"></div><div class="hero-img"></div><div class="hero-pattern"></div><div style="position:absolute;inset:0;overflow:hidden;pointer-events:none"><div class="hs"></div><div class="hs"></div></div>
 <div class="hero-content"><div class="hero-grid"><div class="hero-text">
 <div class="hero-badge"><span class="dot"></span>Производство и монтаж по всему Казахстану</div>
 <div class="offer">&#127873; Бесплатный 3D-проект площадки и расчёт сметы за 1 день</div>
@@ -459,9 +461,9 @@ input,textarea,button{font-size:16px!important}
 <div class="section-header reveal"><div class="stag">Наши работы</div><h2 class="stitle">Реализованные проекты</h2><p class="ssub">Площадки под ключ для ЖК, школ, парков и частных дворов по всему Казахстану</p></div>
 <!-- ЗАМЕНИТЕ background картинок (.wimg style) на реальные фото объектов: background:url('photo.jpg') center/cover -->
 <div class="work-grid">
-<div class="wcard reveal"><div class="wimg" style="background:linear-gradient(135deg,#0052CC,#4C9AFF)"><span class="wtag">Двор ЖК</span></div><div class="wbody"><h4>Игровая зона во дворе ЖК</h4><p>Игровой комплекс с горками, 4 качалки на пружине и безопасное резиновое покрытие.</p><div class="wmeta"><div><b>280 кв.м</b>Площадь</div><div><b>35 дней</b>Срок</div><div><b>Алматы</b>Город</div></div></div></div>
-<div class="wcard reveal"><div class="wimg" style="background:linear-gradient(135deg,#FF6B35,#FFB800)"><span class="wtag">Школа</span></div><div class="wbody"><h4>Спортивная зона для школы</h4><p>Уличные тренажёры, воркаут-комплекс, баскетбольная стойка и скамейки.</p><div class="wmeta"><div><b>450 кв.м</b>Площадь</div><div><b>40 дней</b>Срок</div><div><b>Астана</b>Город</div></div></div></div>
-<div class="wcard reveal"><div class="wimg" style="background:linear-gradient(135deg,#10B981,#0052CC)"><span class="wtag">Городской парк</span></div><div class="wbody"><h4>Игровая зона в парке</h4><p>Большой игровой комплекс, канатная пирамида, беседки и зона отдыха.</p><div class="wmeta"><div><b>600 кв.м</b>Площадь</div><div><b>45 дней</b>Срок</div><div><b>Шымкент</b>Город</div></div></div></div>
+<div class="wcard reveal"><div class="wimg" style="background:url('new-main-banner.jpeg') center/cover"><span class="wtag">Двор ЖК</span></div><div class="wbody"><h4>Игровая зона во дворе ЖК</h4><p>Игровой комплекс с горками, 4 качалки на пружине и безопасное резиновое покрытие.</p><div class="wmeta"><div><b>280 кв.м</b>Площадь</div><div><b>35 дней</b>Срок</div><div><b>Алматы</b>Город</div></div></div></div>
+<div class="wcard reveal"><div class="wimg" style="background:url('8ff24658af12de04977937a093ebe9fd.jpg') center/cover"><span class="wtag">Школа</span></div><div class="wbody"><h4>Спортивная зона для школы</h4><p>Уличные тренажёры, воркаут-комплекс, баскетбольная стойка и скамейки.</p><div class="wmeta"><div><b>450 кв.м</b>Площадь</div><div><b>40 дней</b>Срок</div><div><b>Астана</b>Город</div></div></div></div>
+<div class="wcard reveal"><div class="wimg" style="background:url('20231021-090633.jpg') center/cover"><span class="wtag">Городской парк</span></div><div class="wbody"><h4>Игровая зона в парке</h4><p>Большой игровой комплекс, канатная пирамида, беседки и зона отдыха.</p><div class="wmeta"><div><b>600 кв.м</b>Площадь</div><div><b>45 дней</b>Срок</div><div><b>Шымкент</b>Город</div></div></div></div>
 </div>
 <div class="ccta reveal"><a href="https://wa.me/77470291557?text=Здравствуйте! Хочу посмотреть примеры ваших работ и фото объектов." target="_blank" class="bcl">Запросить больше фото объектов</a></div>
 </div></section>
